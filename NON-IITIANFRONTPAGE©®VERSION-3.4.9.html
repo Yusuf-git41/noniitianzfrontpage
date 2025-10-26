@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height =device-height,initial-scale=1.0">
+
+    <title></title>
+    <style>
+    body{
+        overflow-x:hidden;
+        scroll-behaviour:smooth;
+        width:340px;
+   
+    }
+ @media (min-width: 300px) {
+      body {
+        zoom: 2.1;
+        transform-origin: top left;
+        overflow-x: hidden;
+      }
+    }
+        .parent1{
+            width:100%;
+            height:100%;
+            position: relative;
+        }
+        
+        .main{
+            color:white;       
+            width:100%;
+            background:black;
+            height:50px;
+            overflow:hidden;
+            display:flex;
+            align-items:center;		    
+            box-shadow:inset 0 0 10px black; 
+            border-radius:20px;
+            font-size:20px;
+            margin-bottom:10px;
+            font-weight:bold;
+            justify-content:center;		    		    
+            font-family:courier new;
+            border-top:2px solid black;
+            border-bottom:2px solid black;		
+            transition:0.5s;
+            cursor: pointer;
+            position: relative;
+           
+    		-webkit-tap-highlight-color: transparent;
+  		  -webkit-user-select: none;
+ 		   -ms-user-select: none;
+ 		   user-select: none;
+   		 touch-action: manipulation;
+		
+        }
+        .main:hover{
+            box-shadow:inset 0 0 50px black;
+                      
+        }
+             .main1{
+            width:96%; 
+            background:rgba(0,0,0,0.3);            
+            margin-bottom:10px;
+            padding-left:2%;
+            padding-bottom:10px;
+            padding-top:10px;
+            transition:0.1s;
+            margin-right:1%;
+            margin-left:1%;
+        }
+        mark{
+            background: black;
+            color:white;
+            border-radius:4px;
+            
+        }
+        .section1{
+            display:flex;
+            width:97%;
+            overflow-x:auto;		  
+            background: transparent;
+            border-radius:15px;
+        }
+        .product{
+            position: relative;
+            width:90px;
+            height:180px;
+            position: relative;		   
+            margin-left:5px;
+            border-radius:15px;
+            background:brown;
+            transition:0.2s;
+            flex:0 0 auto;
+        }
+        .product:hover{
+            transform:scale(1.05,1.05);
+           
+        }
+        .img{
+            color:white;
+            position: absolute;
+            border-radius:16px;
+            left:4px;
+            overflow:hidden;
+            top:4px;
+            width:80px;
+            height:150px;
+            background: black;
+        }
+        
+        button{
+            position:absolute;
+            border-radius:10px;
+            border:none;
+            background:gold;
+            bottom:4px;
+            left:14px;
+            color:black;
+            font-weight:bold;
+        }
+        .price{
+            position: relative;
+            top:116px;
+            width:80px;
+            background:white;
+            color:black;				
+        }
+        .header{
+            position:sticky;
+            top:7px;
+            z-index:5;
+            
+        }
+
+
+        #pulse{
+            width:100px;
+            height:10px;
+            background:white;
+            filter:blur(10px);
+            position:absolute;
+            left:-100px;
+            top:20px;
+            transform:rotate(120deg);
+            opacity:0;
+        }
+        #pulse.active{
+            opacity:1;
+            animation:move 1s linear 1;
+        }
+        @keyframes move{
+            0%{
+                left:-100px;
+                opacity:1;
+            }
+            80%{
+                opacity:1;
+            }
+            100%{
+                left:800px;
+                opacity:0;
+            }
+        }
+        
+        .Menu{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            width:90%;
+            overflow:hidden;
+            margin-left:14px;
+            justify-content:center;
+            position: fixed;            
+            z-index:3;
+            max-height: 0;
+            transition: max-height 0.1s ease;
+        }
+        .Menu.active {
+            max-height: 400px;
+            position: absolute;
+            top:60px;
+            opacity:0.6;
+        }
+        .home, .About, .blog, .contact, .signin {
+            display:flex;
+            color:white;
+            justify-content:center;
+            width:300px;
+            background:rgba(0,0,0,0.8);
+            box-shadow:inset 0 0 15px white;
+            border-radius:20px;
+            font-size:20px;
+            font-weight:bold;
+            align-items:center;
+            margin-bottom:10px;
+            height:40px;
+            opacity: 0;       
+        }
+        
+     
+        .Menu.active .home {
+            opacity: 1;
+            transform: translateY(4px);
+            animation: vibrate 0.3s ease 0.2s 2;
+        }
+        .Menu.active .About {
+            opacity: 0.9;
+            transform: translateY(4px);
+            animation: vibrate 0.3s ease 0.3s 2;
+        }
+        .Menu.active .blog {
+            opacity: 0.9;
+            transform: translateY(4px);
+            animation: vibrate 0.3s ease 0.4s 2;
+        }
+        .Menu.active .contact {
+            opacity: 0.9;
+            transform: translateY(4px);
+            animation: vibrate 0.3s ease 0.5s 2;
+        }
+        .Menu.active .signin {
+            opacity: 0.9;
+            transform: translateY(4px);
+            animation: vibrate 0.3s ease 0.6s 2;
+        }
+        
+      
+      .home:hover, .About:hover, .blog:hover, .contact:hover, .signin:hover {
+             box-shadow:inset 0 0 15px white;
+            background:rgba(0,0,0,0.6);
+            color: black;
+            opacity:0.9;
+            font-size:20px;
+        }
+        #modal{
+            opacity:0;
+            position: absolute;
+            top:200px;
+            backdrop-filter:blur(5px);     
+            left:20px;       
+            z-index:-1; 
+            border:1px solid black;       
+            border-radius :22px;   
+        }
+        #modal.active{
+            opacity:1;        
+            z-index:4;
+        }
+      
+        
+      
+        @keyframes vibrate {
+            0%{
+                transform: translateY(4px);
+            }
+            25% {
+                transform: translateY(0px) 
+            }
+            75% {
+                transform: translateY(5px) 
+            }
+        }
+        footer{
+            width:96%;
+            height:800px;
+            background: black;   
+            padding-left:2%;
+            padding-right:2%;          
+        }
+        .redline{
+            position: relative;
+            top:740px;
+            width:100%;
+            height:1px;
+            background:red;
+            box-shadow:inset 0 0 1px black;         
+            
+        }
+        .copyright{
+            position: relative;
+            top:740px;
+            color:white;
+            text-align:center;
+            font-size:6px;
+        }
+        .cprt{
+            letter-spacing:3px;                      
+        }
+        .otherlinks{
+            position: relative;
+            left:-120px;
+           color:white;
+            text-align:center;         
+                           
+        }
+        a{
+            position : relative;
+            left:20px;            
+            color:white;         
+            font-size:13px;           
+            margin-bottom:3px;
+        }
+        .link{
+            display:flex;
+            flex-direction:column;           
+        }
+        .carriers{
+            z-index:6;
+            color:white;
+            display:flex;
+            flex-direction:column;
+        }
+        .partners{
+            z-index:6;
+            color:white;
+            display:flex;
+            flex-direction:column;
+            
+        }
+     .Reach{
+         z-index:6;
+         
+         color:white;
+            display:flex;
+            flex-direction:column;
+         
+     }
+      .parent {
+            width: 300px;
+            height: 180px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+        }
+        
+        .box2 {
+            background: rgba(0, 0, 0, 0.7);
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: -40px;
+            left: -50px;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+        
+        .box2.active {
+            left: 250px;
+        }
+        
+        .box1 {
+            width: 300px;
+            height: 300px;
+            background: transparent;
+            backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+        
+        .box4 {
+            background: rgba(0,0,0,0.5);
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            border-radius: 50%;
+            top: -50px;
+            left: 250px;
+            transition: all 0.5s ease;
+        }
+        
+        .box4.active {
+            top: 180px;
+        }
+        
+        .name {
+            width: 180px;
+            height: 30px;
+            background: black;
+            border: none;
+            font-weight: bold;
+            color: white;
+            font-family: courier new;
+            font-size: 20px;
+            box-shadow: inset 0 0 10px black;
+            position: absolute;
+            border-radius: 30px;
+            margin: auto;
+            z-index: 2;
+            left: 90px;
+            top: 20px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .name:focus{
+            outline:none;
+        }
+        .nm {
+            background: transparent;
+            color: black;
+            font-weight: bold;
+            z-index: 2;
+            position: absolute;
+            top: 27px;
+            left: 25px;
+        }
+        
+        .eml {
+            background: transparent;
+            color: black;
+            font-weight: bold;
+            z-index: 2;
+            position: absolute;
+            top: 77px;
+            left: 25px;
+        }
+        
+        .email {
+            width: 180px;
+            height: 30px;
+            background: black;
+            border: none;
+            font-weight: bold;
+            color: white;
+            font-family: courier new;
+            font-size: 20px;
+            position: absolute;
+            border-radius: 30px;
+            margin: auto;
+            z-index: 2;
+            left: 90px;
+            top: 67px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            
+        }
+        .email:focus{
+            outline:none;
+        }
+        
+        .box7 {
+            width: 80px;
+            height: 30px;
+            background: black;
+            border: none;
+            color: white;
+            text-align: center;
+            font-size: 22px;
+            box-shadow: 0 0 10px black;
+            position: absolute;
+            border-radius: 30px;
+            margin: auto;
+            z-index: 2;
+            left: 115px;
+            top: 122px;
+            transition: 0.2s;
+            cursor: pointer;
+            line-height: 30px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .box7.active{
+            background: transparent;
+            color: black;
+        }
+        h5{
+            color:white;
+            z-index:5;     
+        }
+        .homee{            
+            position: absolute;
+            top:100px;
+            backdrop-filter:blur(4px);     
+            font-size:20px;
+            left:60px;       
+            z-index:1; 
+            font-weight:bold;
+            font-family: courier new;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:40px;
+            width:230px;
+            border:1px solid black;  
+            opacity:0;                             
+            border-radius :22px;  
+            transform:translateY(20px);
+            transition:0.5s 
+         
+                                
+        }
+        .homee.active{
+          transform:translateY(0px);
+          opacity:1;
+       
+        }
+            .aboutt{            
+            position: absolute;
+            top:100px;
+            backdrop-filter:blur(4px);     
+            font-size:20px;
+            left:60px;       
+            z-index:1; 
+            font-weight:bold;
+            font-family: courier new;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:40px;
+            width:230px;
+            border:1px solid black;  
+            opacity:0;                             
+            border-radius :22px;  
+            transform:translateY(20px);
+            transition:0.5s ;
+            padding:6px;
+         
+                                
+        }
+        .aboutt.active{
+          transform:translateY(0px);
+          opacity:1;
+       
+        }
+        .blogg{            
+            position: absolute;
+            top:100px;
+            backdrop-filter:blur(4px);     
+            font-size:13px;
+            left:45px;       
+            z-index:1; 
+            font-weight:bold;
+            font-family: courier new;
+            display:flex;
+            align-items:center;
+            justify-content:center;           
+            height:40px;
+            width:260px;
+            border:1px solid black;  
+            opacity:0;                             
+            border-radius :22px;  
+            transform:translateY(20px);
+            transition:0.5s;
+            padding:4px;
+         
+                                
+        }
+        .blogg.active{
+          transform:translateY(0px);
+          opacity:1;
+       
+        }
+           .contactt{            
+            position: absolute;
+            top:100px;
+            backdrop-filter:blur(4px);     
+            font-size:15px;
+            left:45px;       
+            z-index:1; 
+            font-weight:bold;
+            font-family: courier new;
+            display:flex;
+            align-items:center;
+            justify-content:center;           
+            height:40px;
+            width:260px;
+            border:1px solid black;  
+            opacity:0;                             
+            border-radius :22px;  
+            transform:translateY(20px);
+            transition:0.5s 
+         
+                                
+        }
+        .contactt.active{
+          transform:translateY(0px);
+          opacity:1;
+       
+        }
+        .onloadModal{
+             position: absolute;
+            top:100px;
+            backdrop-filter:blur(4px);     
+            font-size:15px;
+            left:45px;       
+            z-index:1; 
+            font-weight:bold;
+            font-family: courier new;
+            display:flex;
+            align-items:center;
+            justify-content:center;           
+            height:40px;
+            width:260px;
+            border:1px solid black;  
+            opacity:0;                             
+            border-radius :22px;  
+            transform:translateY(20px);
+            transition:0.5s;
+            padding:4px;
+            
+        }
+       .onloadModal.active{
+          transform:translateY(0px);
+          opacity:1;
+       }
+        
+        
+        
+ 
+    </style>
+</head>
+<body>
+<div class="homee">You are in home</div>
+<div class="aboutt">CheckOut Linked-in : Yusuf/linkedin</div>
+<div class="blogg">Go to blogspot/IITian'sFrontPage</div>
+<div class="contactt">Not available !</div>
+<div class="onloadModal">click the header for more options</div>
+
+
+    <div class="parent1">
+    
+        <div class="header">
+            <div class="main" onclick="toggleMenu()">non-IITian's Front Page
+            <div id="pulse"></div>
+            </div>
+            <div class="Menu" id="menu">	
+                <div class="home" onclick="getHome()">Home</div>
+                <div class="About" onclick="getAbout()">About us</div>
+                <div class="blog" onclick="getBlog()">Blog</div>
+                <div class="contact" onclick="getContact()">Contact us</div>
+                <div class="signin" onclick="getModal()">log in</div>		
+            </div>	
+        </div>	
+
+        <div id="modal">
+ <div class="Log-IN">
+    <div class="parent">
+        <div class="box7">Log-in</div>
+        <div class="box6">
+            <mark class="eml">Email</mark><input type="email" placeholder="Ex:-iitianzfrontpage247@gmail.com" class="email" required=""/>
+        </div>
+        <div class="box5">
+            <mark class="nm">Name</mark>
+            <input type="text" class="name" placeholder="Ex:-Yusuf" required="" />
+        </div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+        <div class="box2"></div>
+        <div class="box1"></div>
+    </div>
+ </div>    
+</div>
+ <div class="main1">
+            <h4>Try to Measure Temperature Digitally</h4>
+            <p>let’s try to measure temperature digitally. The simple, low resolution analog-to-
+digital (A/D) converter can easily be replaced with a resistor/capacitor (R/C) pair connected to a microcontroller I/O pin. The R/C pair would supply a signal that
+operates with a single-pole, rise-time function. The controller counts milliseconds,
+and with its oscillator/timer combination measures the input signal. Why would you
+want to do this? Maybe you are measuring temperature with a sensor that changes
+its resistance value with changes in temperature. </p>  
+  </div>
+   <div class="main1">
+            <h4>NonsinusoidaI Waveform Generators</h4>
+            <p>Nonsinusoidal or astable waveform generators may be categorized as operating in one of
+two modes, both of which are varieties of relaxation oscillator. As the name implies, the
+oscillation frequency is determined by the time taken by the circuit to relax or recover from
+a positive extreme of voltage excursion, toward a switching level at which a transient occurs.
+The transient carries the output voltage to a negative extreme and the circuit then proceeds to
+relax toward the switching level again, but from the opposite polarity. On reaching it, the
+circuit switches rapidly again, finishing up back at the positive extreme.</p>
+            
+                 </div>
+        <div class="main1">
+            <h4>Our achievements</h4>
+            <p>#1 educational media</p>
+            <p>100M subscribers. at YouTube.</p>
+
+                 </div>
+     <div class="main1">
+            <h4>Why choose us</h4>
+            <p>Get notified earlier than others. We have a<mark> professional team</mark> of summarizing text in simple words</p>
+            <p>Stay up-to-date yourself from latest growing technology and technical skills</p>
+            <p>Get quick response to user feedbacks and technical issues.</p>
+        </div>
+        <div class="main1">
+            <h4>Upcoming programs</h4>
+            <P>We are going to open a new startup named non-IITian Coaching Institute at Noida,UP.</p>
+            <p>In this coaching institute going to launch GATE batches named <mark>GURUKUL</mark> batch for btech graduates.</p>
+            <p>We are going to launch ultimate industry ready courses and certificates which are valid in every industrial sector.</p>
+            <p>Government partnership for affordable mentorship programs.</p>
+        </div>
+        <div class="main1">
+            <h4>Our products</h4>
+            <div class="section1">
+                <div class="product">
+                    <div class="img">
+                    <p class="price">$57⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                </div>
+                <div class="product">
+                    <div class="img">
+                    <p class="price">$98⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                </div>			
+                <div class="product">
+                    <div class="img">
+                    <p class="price">$93⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                </div>	
+                   <div class="product">
+                    <div class="img">
+                    <p class="price">$18⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                   </div> 
+                   <div class="product">
+                    <div class="img">
+                    <p class="price">$77⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                   </div>  
+                   <div class="product">
+                    <div class="img">
+                    <p class="price">$17⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                   </div>  
+                   <div class="product">
+                    <div class="img">
+                    <p class="price">$70⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                   </div>  <div class="product">
+                    <div class="img">
+                    <p class="price">$67⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                   </div>  <div class="product">
+                    <div class="img">
+                    <p class="price">$73⁰⁰</p>
+                    </div>
+                    <button>Buy now</button>
+                   </div>  
+                </div>	
+            </div>
+        </div>
+    </div>		
+    <footer>
+     <div class="redline"></div>
+     <div class="copyright">
+  	   <p class="cprt">©copyright claimed</p>
+  	   <p>This webpage had reserved the layouts and brandname for our purposes. If someone founds to copy or remake or republish any section of the webpage without any permission from us will be punished under the rules and regulations of INDIAN COPYRIGHT ACT.</p>
+     </div>
+     <div class="link" ><h4 class="otherlinks">Other links</h4>
+    		 <a>YouTube/IITian'sFrontPage</a>
+    		<a>Instagram/IITian'sFrontPage</a>
+   			  <a>Linked-in/IITian'sFrontPage</a>
+   	 		 <a>X-platform/IITian'sFrontPage</a>
+   	 		 <a>Quora/IITian'sFrontPage</a> 	
+   	 		  <a>blogspot/IITian'sFrontPage</a> 	
+   	 		 <a>Spotify/podcasts/IITian'sFrontPage</a>		   	 		 
+     </div>
+     <div class="carriers">
+     <h4>Work with us</h4>
+     <a>carriers@iitian'sfrontpage</a>
+     </div>
+     <div class="partners"><h4>Our partners</h4>
+     <a>Tata consultancy</a>
+    <a>Amazon Web Services</a>
+    <a>Infosys</a>
+    <a>Gada Electronics</a>
+    <a>Urbon Company</a>
+    <a>ancient paints</a>
+     </div>
+     <div class="Reach"><h4>Reach us</h4>
+      <a>Email:iitianzfrontpage247@gmail.com</a>
+      <a>telephone:09876543210987;</a>
+      <a>address:MBM University, Jodhpur </a>
+     </div>
+      
+     </div>
+     <h5>Developer: Yusuf Mohammad</h5>
+    </footer>
+</body>
+<script>
+function toggleMenu() {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('active');    
+    menu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'DIV') {            
+            menu.classList.remove('active');
+        }
+    });
+}
+var btn = document.querySelector('.box7'); //login btn
+function getModal(){
+    const model =  document.getElementById('modal');
+    model.classList.toggle('active');
+    
+    btn.addEventListener('click',() => {
+        model.classList.remove('active');
+        model.style.transition = '0.5s';
+    });
+}
+
+
+function pulseEffect() {
+    let pulse = document.getElementById('pulse');
+    let main = document.querySelector('.main');
+
+    main.addEventListener('click', () => {
+        pulse.classList.add('active');
+        setTimeout(() => {
+            pulse.classList.remove('active');
+        }, 1000);
+    });
+}
+pulseEffect();
+function getHome(){
+    let home = document.querySelector('.homee');
+   HomeBtn = document.querySelector('.home');
+    HomeBtn.addEventListener('click',()=>{
+        home.classList.add('active');
+        setTimeout(()=>{
+            home.classList.remove('active');
+        
+        },500 );
+        
+    });
+}
+getHome();
+function getAbout(){
+    let about = document.querySelector('.aboutt');
+   AboutBtn = document.querySelector('.About');
+    AboutBtn.addEventListener('click',()=>{
+        about.classList.add('active');
+        setTimeout(()=>{
+            about.classList.remove('active');
+        
+        },1000 );
+        
+    });
+}
+getAbout();
+function getBlog(){
+    let blog = document.querySelector('.blogg');
+   BlogBtn = document.querySelector('.blog');
+    BlogBtn.addEventListener('click',()=>{
+        blog.classList.add('active');
+        setTimeout(()=>{
+            blog.classList.remove('active');        
+        },2000 );
+        
+    });
+}
+getBlog();
+function getContact(){
+    let contact = document.querySelector('.contactt');
+   ContactBtn = document.querySelector('.contact');
+    ContactBtn.addEventListener('click',()=>{
+    contact.classList.add('active');
+        setTimeout(()=>{
+            contact.classList.remove('active');        
+        },1000 );
+        
+    });
+}
+getContact();
+function onload(){
+    let onlod = document.querySelector('.onloadModal')
+    window.addEventListener('DOMContentLoaded',()=>{
+        onlod.classList.add('active');
+        setTimeout(()=>{
+            onlod.classList.remove('active');
+        },4000);     
+    });
+}
+onload();
+        let box2 = document.querySelector('.box2');
+        let box4 = document.querySelector('.box4');
+        let name = document.querySelector('.name');
+         let email = document.querySelector('.email');
+        
+        btn.addEventListener('click', () => {
+            box2.classList.toggle('active');
+            box4.classList.toggle('active');
+            box7.classList.toggle('active');
+        });
+       name.addEventListener('click', () => {
+            box2.classList.toggle('active');
+            box4.classList.toggle('active');
+         
+        });
+
+   email.addEventListener('click', () => {
+            box2.classList.toggle('active');
+            box4.classList.toggle('active');
+         
+        });
+</script>
+</html>
+    
+    
+    
